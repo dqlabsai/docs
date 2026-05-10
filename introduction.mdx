@@ -1,0 +1,47 @@
+---
+title: "What is PRIZM? Data quality observability by DQLabs"
+description: "PRIZM by DQLabs monitors data assets, tracks quality metrics, generates alerts, and helps teams resolve data issues across all connected databases."
+---
+
+PRIZM is DQLabs' data quality and observability platform built for data engineers, analysts, and data stewards. It connects to your data ecosystem—Snowflake, PostgreSQL, MySQL, Redshift, and more—so you can discover and catalog data assets, continuously monitor quality metrics, receive alerts when anomalies occur, and track issues through to resolution. PRIZM gives your team a single place to understand the health of your data and act on problems before they affect downstream consumers.
+
+## Key features
+
+<CardGroup cols={2}>
+  <Card title="Assets" icon="database" href="/concepts/assets">
+    Discover and catalog all tables, views, queries, pipelines, reports, and semantic models connected to your data sources. Search, filter, and drill into any asset to see its schema, lineage, and quality status.
+  </Card>
+  <Card title="Metrics" icon="chart-line" href="/concepts/metrics">
+    Monitor key performance indicators including data quality scores, active pipeline counts, system uptime, and data volume. Track 30-day quality trends and pipeline execution status in real time.
+  </Card>
+  <Card title="Alerts" icon="bell" href="/concepts/alerts">
+    Receive notifications when a metric threshold is breached, data drift is detected, a schema change occurs, or a pipeline fails. Alerts are classified by severity: Critical, High, Warning, and Info.
+  </Card>
+  <Card title="Issues" icon="circle-exclamation" href="/concepts/issues">
+    Track data quality problems from discovery through resolution. Issues are organized by status—New, In Progress, and Resolved—and linked to the affected asset and database.
+  </Card>
+  <Card title="Analytics" icon="chart-bar" href="/guides/analytics">
+    Explore query performance, cache hit rates, error rates, and active user counts. Use the Performance Overview to understand system behavior over time.
+  </Card>
+  <Card title="Chat assistant" icon="robot" href="/guides/chat-assistant">
+    Ask questions about your data in natural language. The built-in chat assistant helps you find assets, understand metrics, and investigate issues without leaving the platform.
+  </Card>
+</CardGroup>
+
+## How PRIZM works
+
+<Steps>
+  <Step title="Connect your data sources">
+    Link PRIZM to your databases and data platforms—Snowflake, PostgreSQL, MySQL, Redshift, and others. PRIZM discovers assets across all connected sources and populates your asset catalog automatically.
+  </Step>
+  <Step title="Monitor automatically">
+    Once connected, PRIZM continuously evaluates data quality across your assets. It tracks metrics such as freshness, volume, schema stability, and completeness, and surfaces anomalies as they occur.
+  </Step>
+  <Step title="Act on alerts and issues">
+    When something goes wrong, PRIZM creates an alert and optionally opens an issue for tracking. Use the Alerts and Issues pages to triage, assign priority, and drive problems to resolution.
+  </Step>
+</Steps>
+
+<Note>
+  PRIZM supports connections to **Snowflake**, **PostgreSQL**, **MySQL**, and **Redshift**. Contact your PRIZM administrator to connect additional data sources.
+</Note>

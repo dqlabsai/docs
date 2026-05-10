@@ -1,0 +1,55 @@
+---
+title: "Monitor query performance and usage with Analytics"
+description: "Use the PRIZM Analytics page to track total queries, success rates, average response times, active users, cache hit rates, and error rates."
+---
+
+The Analytics page gives you a platform-level view of how PRIZM is performing across your organization. Use it to monitor query throughput, verify that success rates remain high, and spot early signs of performance degradation — such as rising response times or a declining cache hit rate. The four KPI cards at the top provide an instant read on the health of the system, while the Performance Overview chart and Performance Stats panel give you deeper context.
+
+## Analytics overview cards
+
+Four metric cards at the top of the page summarize platform-wide performance at a glance:
+
+<CardGroup cols={2}>
+  <Card title="Total Queries" icon="chart-bar">
+    **1.2M** — The total number of queries processed by PRIZM. Trending up 12.5% compared to the previous period. A rising query count typically reflects growing adoption.
+  </Card>
+  <Card title="Query Success Rate" icon="circle-check">
+    **98.2%** — The percentage of queries that completed without errors. Trending up 1.8%. Values below 95% warrant investigation into pipeline or connector health.
+  </Card>
+  <Card title="Avg Response Time" icon="timer">
+    **120ms** — The average time for PRIZM to respond to a query. Trending down 15.3%, which is an improvement. Lower is better — rising response times may indicate resource contention or inefficient queries.
+  </Card>
+  <Card title="Active Users" icon="users">
+    **8.5K** — The number of active users accessing PRIZM in the current period. Trending up 8.1%, reflecting platform growth.
+  </Card>
+</CardGroup>
+
+## Performance overview
+
+Below the metric cards, the **Performance Overview** section displays a time-series chart of system performance metrics over the **last 30 days**. Use this chart to:
+
+- Identify trends in query volume and response times over time.
+- Spot anomalies — unexpected spikes in error rates or sudden drops in success rates.
+- Correlate performance changes with known events, such as a major data migration or a new pipeline deployment.
+
+<Note>
+Analytics data updates periodically. Refresh the page if you need the latest values. Use this page to spot performance regressions or unusual spikes in query load, then investigate the root cause in the Assets or Issues pages.
+</Note>
+
+## Performance stats
+
+To the right of the chart, the **Performance Stats** panel shows three current-period health indicators, each measured over the **last 24 hours**:
+
+| Metric | Value | Status |
+|---|---|---|
+| **Query Performance** | 95.8% | Healthy |
+| **Cache Hit Rate** | 78.3% | Warning |
+| **Error Rate** | 0.12% | Healthy |
+
+- **Query Performance (95.8%)** — The proportion of queries that met defined performance thresholds in the last 24 hours. This is in a healthy range.
+- **Cache Hit Rate (78.3%)** — The percentage of queries served from cache rather than re-executing against the source database. This metric currently carries a **Warning** status, indicating it may be lower than expected.
+- **Error Rate (0.12%)** — The proportion of queries that failed with an error. At 0.12%, this is low and healthy.
+
+<Tip>
+A declining cache hit rate may indicate that query patterns are changing significantly — for example, new ad-hoc queries that bypass cached results — or that the cache configuration needs tuning. If you see the cache hit rate fall below 70%, review recent query patterns and check whether cache invalidation rules are configured appropriately.
+</Tip>

@@ -1,0 +1,62 @@
+---
+title: "Metrics: Monitor data quality and pipeline health in PRIZM"
+description: "PRIZM metrics track data quality score, active pipeline count, system uptime, and total data volume — surfaced automatically on a single dashboard."
+---
+
+The Metrics page gives you a live overview of the health and performance of your entire data ecosystem. Four KPI cards at the top of the page surface the most critical indicators — data quality, pipeline activity, system availability, and storage volume — so you can spot problems before they reach consumers. Beneath the KPI cards, a pipeline status panel and a recent alerts feed provide the detail you need to investigate and act.
+
+## Key metrics
+
+PRIZM displays four metric cards at the top of the Metrics page. Each card shows a current value along with a trend indicator so you can see whether things are improving or degrading.
+
+<CardGroup cols={2}>
+  <Card title="Data Quality" icon="circle-check">
+    The current aggregate data quality percentage across all monitored assets (for example, `94.2%`). A trend indicator shows the percentage-point change since the previous period — an upward arrow means quality is improving, a downward arrow means it is degrading. Use this card as your primary health signal.
+  </Card>
+  <Card title="Active Pipelines" icon="timeline">
+    The total number of pipelines PRIZM is tracking (for example, `24`), with a subtitle breaking down how many are currently running versus paused (for example, `22 running, 2 paused`). A spike in paused pipelines often precedes freshness alerts downstream.
+  </Card>
+  <Card title="System Uptime" icon="timer">
+    The percentage of time PRIZM's connected systems have been available over the last 30 days (for example, `99.9%`). This metric reflects the reliability of your data infrastructure as a whole.
+  </Card>
+  <Card title="Data Volume" icon="database">
+    The total volume of data across all connected assets expressed in terabytes (for example, `2.4 TB`). A trend indicator shows growth or contraction relative to the previous period. Sudden volume drops can indicate ingestion failures.
+  </Card>
+</CardGroup>
+
+## Pipeline status
+
+The **Pipeline Status** panel lists your active pipelines alongside their current execution state and a progress bar.
+
+| Status | What it means |
+|---|---|
+| **Running** | The pipeline is actively executing. The progress bar shows percentage completion (for example, `75% complete`). |
+| **Queued** | The pipeline is scheduled and waiting for resources or a dependency to complete before it starts. Progress is `0%`. |
+| **Complete** | The pipeline has finished successfully. Progress is `100%`. |
+
+Monitor this panel after scheduled pipeline windows to confirm that all jobs have moved from Queued → Running → Complete. A pipeline that stays in Running longer than expected may indicate a hang or resource contention upstream.
+
+## Recent alerts on the Metrics page
+
+The **Recent Alerts** feed alongside the Pipeline Status panel shows the latest data quality and system events in real time. Each entry includes:
+
+- **Alert title** — A short description of what was detected (for example, `Data completeness below threshold` or `Pipeline execution failed`).
+- **Affected object** — The specific field, table, or pipeline involved (for example, `users.email field` or `ETL_daily_orders`).
+- **Timestamp** — How long ago the alert was triggered (for example, `2 minutes ago`).
+- **Type badge** — Colour-coded severity: `warning` (yellow), `critical` (red), or `resolved` (green).
+
+Resolved alerts remain visible so you can confirm that a previously failing check has recovered without navigating away from the Metrics page.
+
+## Data quality trends
+
+The **Data Quality Trends** chart at the bottom of the Metrics page plots key metrics over the last 30 days. Use this chart to:
+
+- Identify patterns such as quality degradation on specific days or after deployments.
+- Confirm that a remediation effort has produced a measurable improvement over time.
+- Share a historical view with stakeholders who need evidence of data reliability.
+
+The chart defaults to a 30-day window. Use the date control in the chart header to adjust the range.
+
+<Note>
+  Metrics refresh automatically as new data is ingested. To force an immediate update without waiting for the next refresh cycle, click the **refresh icon** in the top-right corner of the Recent Alerts panel.
+</Note>

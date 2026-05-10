@@ -1,0 +1,54 @@
+---
+title: "Search and discover assets across your data ecosystem"
+description: "Use PRIZM's asset search to find tables, views, queries, pipelines, reports, and semantics across all your connected databases and platforms."
+---
+
+The Assets page is your catalog for every data asset PRIZM monitors — from raw database tables to semantic layers and BI reports. Use the search bar and type filter tabs to quickly narrow down the asset you need, then click through to inspect its schema, metrics, and quality history. Both the Assets page search and the global header search discover assets in the same underlying catalog.
+
+## How to search for an asset
+
+<Steps>
+  <Step title="Open the Assets page or global search">
+    Click **Assets** in the top navigation bar to go directly to the asset catalog. Alternatively, press **⌘ K** (Mac) or **Ctrl+K** (Windows) to open the global search from anywhere in PRIZM.
+  </Step>
+  <Step title="Type your search term">
+    Enter a keyword or asset name in the search box — for example, `customer_transactions`. PRIZM searches asset names and associated metadata across all connected databases as you type.
+  </Step>
+  <Step title="Filter by asset type">
+    Use the tab row beneath the search box to narrow results by category:
+
+    | Tab | What it shows |
+    |---|---|
+    | **All** | Every asset regardless of type |
+    | **Tables & Views** | Database tables and views |
+    | **Query** | Saved queries |
+    | **Pipeline** | Data pipeline assets |
+    | **Reports** | BI and reporting assets |
+    | **Semantics** | Semantic layer definitions |
+  </Step>
+  <Step title="Open the asset">
+    Click any row in the results table to open that asset's detail page, where you can inspect schema, metrics, lineage, and recent alerts.
+  </Step>
+</Steps>
+
+## Search result columns
+
+The asset table displays three columns for each result:
+
+- **Name** — The asset identifier, such as `customer_transactions` or `order_details`. Click the name to open the asset detail page.
+- **Source** — The database platform and database name where the asset lives, for example `snowflake/production_db`, `postgres/analytics_db`, or `mysql/ecommerce_db`.
+- **Columns** — A preview of the field names found in the asset, such as `customer_id`, `amount`, `transaction_date`, and `transaction_type`.
+
+## Related documentation
+
+Below the asset table, the Assets page surfaces a **Documentation** section with links to relevant external references. For example, when working with Snowflake assets, you may see links to resources such as:
+
+- Time-Series Forecasting (Snowflake Cortex ML Functions)
+- Anomaly Detection (Snowflake Cortex ML Functions)
+- `FORECAST (SNOWFLAKE.ML)` reference
+
+These links provide context for the data platform features that underpin your assets, helping you understand the technology behind the pipelines you observe.
+
+<Tip>
+The search bar on the Assets page and the global header search both discover assets from the same catalog. Use whichever is most convenient — the results are equivalent.
+</Tip>

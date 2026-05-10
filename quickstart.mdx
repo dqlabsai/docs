@@ -1,0 +1,78 @@
+---
+title: "Get up and running with PRIZM: a step-by-step guide"
+description: "Sign in to PRIZM, navigate the dashboard, search for assets, and start monitoring data quality — all in a few straightforward steps."
+---
+
+This guide walks you through your first session in PRIZM. You'll sign in, orient yourself in the dashboard, find a data asset, explore its details, and check whether any alerts or issues need your attention. The whole process takes about five minutes.
+
+<Steps>
+  <Step title="Sign in to PRIZM">
+    Open your PRIZM instance URL in a browser. On the login screen, enter your **Email** and **Password**, then click **Sign in**.
+
+    If you don't have an account yet, click **Create new account** below the sign-in form to register. Once authenticated, PRIZM redirects you to the dashboard—or to the page you were trying to reach before logging in.
+
+    <Tip>
+      You can toggle password visibility using the eye icon in the password field.
+    </Tip>
+  </Step>
+
+  <Step title="Navigate the dashboard">
+    After signing in, you land on the **Dashboard**—your starting point for exploring the platform. The header gives you everything you need to move around:
+
+    - **Assets**, **Metrics**, **Alerts**, and **Issues** appear as primary navigation items.
+    - Click **More** to access additional sections such as **Analytics**.
+    - Use the **Search** bar on the right side of the header to find any asset by name. Press **⌘K** (Mac) or **Ctrl+K** (Windows/Linux) to focus the search field from anywhere in the platform.
+  </Step>
+
+  <Step title="Search for an asset">
+    Click **Assets** in the header to open the asset catalog. Use the search bar to find assets by name across all connected databases and platforms.
+
+    Filter results using the type tabs:
+
+    | Tab | What it shows |
+    |-----|--------------|
+    | **All** | Every asset across all types |
+    | **Tables & Views** | Database tables and views |
+    | **Query** | Saved queries |
+    | **Pipeline** | ETL and data pipelines |
+    | **Reports** | Report assets |
+    | **Semantics** | Semantic models |
+
+    Assets are listed with their source database (for example, `snowflake/production_db` or `postgres/analytics_db`) and associated columns.
+  </Step>
+
+  <Step title="View asset details">
+    Click any asset in the list to open its detail page. The detail view shows the asset's description, source, owners, last-updated date, and quality tags. Use the tabs to explore different aspects of the asset:
+
+    - **Overview** — Summary metrics including volume, schema column count, freshness, and quality score. Also shows recent alerts associated with this asset.
+    - **Schema** — Column-level view of the asset's structure.
+    - **Metrics** — Quality metrics collected for this asset over time.
+    - **Lineage** — Upstream and downstream data dependencies.
+    - **Documentation** — Reference documentation linked to the asset.
+
+    Click **Back to Assets** at the top left to return to the catalog.
+  </Step>
+
+  <Step title="Check alerts and issues">
+    Click **Alerts** in the header to see all active notifications. Alerts are categorized by severity—**Critical**, **High**, **Warning**, and **Info**—and include details such as the affected asset, drift status, and percent change.
+
+    Click **Issues** to see open data quality problems across your environment. Each issue shows the affected asset, database, priority level, and current status (New, In Progress, or Resolved). Use this view to triage and track problems to completion.
+  </Step>
+</Steps>
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Assets" icon="database" href="/concepts/assets">
+    Learn how PRIZM discovers and catalogs tables, views, queries, pipelines, and semantic models.
+  </Card>
+  <Card title="Alerts" icon="bell" href="/concepts/alerts">
+    Understand how alerts are generated, classified by severity, and linked to assets.
+  </Card>
+  <Card title="Issues" icon="circle-exclamation" href="/concepts/issues">
+    Learn how to manage data quality issues from discovery through resolution.
+  </Card>
+  <Card title="Chat assistant" icon="robot" href="/guides/chat-assistant">
+    Use natural language to ask questions about your data directly inside PRIZM.
+  </Card>
+</CardGroup>

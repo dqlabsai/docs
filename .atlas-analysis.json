@@ -1,0 +1,77 @@
+{
+  "projectType": "saas",
+  "projectName": "PRIZM",
+  "projectDescription": "PRIZM is a data quality and observability platform by DQLabs that lets teams monitor assets, track metrics, manage alerts, and resolve data issues across their data ecosystem.",
+  "theme": "luma",
+  "primaryColor": "#e40404",
+  "lightColor": "#f9cdcd",
+  "darkColor": "#747474",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "login"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "concepts/assets",
+              "concepts/metrics",
+              "concepts/alerts",
+              "concepts/issues"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/navigating-dashboard",
+              "guides/searching-assets",
+              "guides/asset-details",
+              "guides/managing-alerts",
+              "guides/tracking-issues",
+              "guides/analytics",
+              "guides/chat-assistant"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "faq",
+              "troubleshooting"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Unified asset catalog — discover and browse tables, views, queries, pipelines, reports, and semantic models across all connected databases",
+    "Data quality metrics — real-time monitoring of data quality score, freshness, volume, schema, and completeness",
+    "Alerts — automated notifications for data drift, threshold breaches, pipeline failures, and schema changes with severity levels (Critical, High, Warning, Info)",
+    "Issues tracker — create, triage, and resolve data quality issues with priority and status workflow",
+    "Asset detail view — per-asset tabs for Overview, Schema, Metrics, Lineage, and Documentation",
+    "Analytics dashboard — query performance, cache hit rate, error rate, and active-user insights",
+    "AI Chat Assistant — natural-language interface to query pipeline status, current alerts, and asset health",
+    "Search — global asset search with keyboard shortcut and type-filtered tabs (All, Tables & Views, Query, Pipeline, Reports, Semantics)",
+    "Dark mode toggle — user-level theme preference",
+    "Multi-source support — Snowflake, PostgreSQL, MySQL, Redshift, and more"
+  ],
+  "publicApiSurface": [
+    "GET /dashboard — main landing view after login",
+    "GET /assets — paginated asset catalog with search and type filters",
+    "GET /assets/:id — asset detail with Overview, Schema, Metrics, Lineage, Documentation tabs",
+    "GET /metrics — KPI cards (Data Quality %, Active Pipelines, System Uptime, Data Volume) and pipeline status",
+    "GET /alerts — alert list with severity cards (Critical, High, Warning, Info) and drift-status table",
+    "GET /issues — issue list with status workflow (New, In Progress, Resolved) and priority filtering",
+    "GET /analytics — query analytics (Total Queries, Query Success Rate, Avg Response Time, Active Users)",
+    "POST / (login) — email + password authentication with redirect-path preservation",
+    "ChatAssistant — natural-language queries for pipeline status, alerts, and asset health"
+  ]
+}

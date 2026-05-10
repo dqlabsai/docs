@@ -1,0 +1,65 @@
+---
+title: "View, triage, and respond to PRIZM data quality alerts"
+description: "Navigate the Alerts page in PRIZM, understand severity levels, read drift status, interpret percent change values, and act on triggered alerts."
+---
+
+PRIZM generates alerts automatically whenever a monitored measure exceeds its defined threshold. The Alerts page gives you a consolidated view of every triggered alert, grouped by severity, so you can triage problems quickly and route the most critical ones to your issues tracker. Understanding how to read drift status and percent change values helps you judge whether an alert warrants immediate action or can be scheduled for later review.
+
+## Accessing and reading alerts
+
+<Steps>
+  <Step title="Open the Alerts page">
+    Click **Alerts** in the top navigation bar. The page loads with a summary row of severity cards at the top and a detailed alert table below.
+  </Step>
+  <Step title="Review the severity summary cards">
+    Four metric cards give you an instant count of active alerts by severity level: **Critical**, **High**, **Warning**, and **Info**. Each card also shows a trend indicator (up or down) and percentage change so you can see whether your alert load is growing or shrinking.
+  </Step>
+  <Step title="Read the alerts table">
+    The table below the cards lists every triggered alert with the following columns:
+
+    | Column | Description |
+    |---|---|
+    | **Alert** | A human-readable description of what was detected — for example, "The Last Updated failed for value 7h 16m 23s" |
+    | **ID** | A unique identifier for the alert record, useful for referencing it in conversations or tickets |
+    | **Drift Status** | The magnitude of change relative to the baseline — for example, `Low` |
+    | **Percent Change** | The numeric percentage by which the measure changed — for example, `13.03` |
+    | **Level** | The scope of the alert — `Asset` means the alert applies to a specific data asset |
+  </Step>
+  <Step title="Route critical problems to Issues">
+    For any alert that requires investigation or remediation, navigate to **Issues** to create a tracking record or update an existing one. The Issues page is where you manage the full lifecycle of a data quality problem.
+  </Step>
+</Steps>
+
+<Note>
+Alerts are generated automatically when a measure's defined threshold is breached. You cannot manually create alerts from this page — alerts originate from your configured monitors and measures.
+</Note>
+
+## Understanding alert severity
+
+PRIZM classifies every alert into one of four severity levels:
+
+- **Critical** — A serious problem that likely impacts production data or downstream consumers. Investigate immediately.
+- **High** — A significant issue that warrants prompt attention, typically within the same business day.
+- **Warning** — A deviation that is worth monitoring but does not yet represent a major risk. Schedule a review.
+- **Info** — Informational events such as completed pipeline runs or resolved conditions. No immediate action required.
+
+## Drift status
+
+The **Drift Status** column indicates how much a metric has deviated from its established baseline:
+
+- **Low** — The observed value is close to the historical baseline. The change may be within normal variation.
+- Higher drift values indicate a more significant departure from expected behavior, which typically justifies faster investigation.
+
+Use drift status alongside percent change to distinguish noise from genuine data quality problems.
+
+## Percent change
+
+The **Percent Change** value shows the magnitude of the change that triggered the alert. For example, a value of `13.03` means the measured value shifted by approximately 13% relative to its baseline. Larger percent changes combined with higher severity levels are the clearest signal that immediate action is needed.
+
+## Alert level
+
+The **Level** column describes the scope at which the alert was triggered. An alert with level **Asset** applies to a specific named data asset in your catalog. This helps you quickly identify which table, view, or pipeline is affected.
+
+<Tip>
+High counts in the **Critical** or **High** severity cards are a strong signal to open the Issues tracker and verify whether active investigations already cover the affected assets. If not, create new issues to assign ownership and track resolution.
+</Tip>

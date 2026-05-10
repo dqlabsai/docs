@@ -1,0 +1,203 @@
+---
+title: "PRIZM FAQ: Assets, alerts, issues, metrics, and accounts"
+description: "Common questions about PRIZM's asset catalog, alerts, issues, data sources, quality metrics, freshness, and account creation — answered."
+---
+
+PRIZM is DQLabs' data quality and observability platform. Whether you're connecting your first database or investigating a drift alert, this page answers the questions users ask most often. If you don't find what you need here, reach out to your PRIZM administrator or contact [DQLabs support](mailto:support@dqlabs.ai).
+
+## Core Concepts
+
+<Accordion title="What is Data Discovery?">
+  **Data Discovery** is the act of finding something. It's the moment a user searches, browses, or stumbles onto a dataset they didn't know existed. It's transactional and ephemeral — you discover once, then you move on.
+</Accordion>
+
+<Accordion title="What is Data Catalog?">
+  \*\*Data Catalog \*\*is the system of record. It's the persistent, maintained repository of metadata, definitions, lineage, ownership, and quality signals for every data asset. The catalog is what makes discovery possible, but it's much more than a search index — it's the ongoing governance layer that keeps information accurate, trusted, and actionable over time.
+</Accordion>
+
+<Accordion title="Does Prizm provide Data Discovery or Data Catalog or both?">
+  A simple way to think about it:
+
+  |  | Discovery | Catalog |
+  | :-- | :-- | :-- |
+  | Question it answers | "Does this data exist?" | "What is this data, who owns it, can I trust it?" |
+  | Primary user | Anyone looking for data | Data owners, stewards, engineers, and analysts |
+  | Frequency | One-time or occasional | Ongoing, daily governance work |
+  | Core feature | Search bar | Asset pages, lineage, DQ rules, glossary |
+  | Value | Speed to find | Depth of trust |
+
+  In your Prizm UI, the **global search bar** is the discovery surface. Everything else — the asset detail page, DQ rules, lineage, glossary, tags, usage signals — is the **catalog** doing its job of making the discovered asset trustworthy and actionable. Think discovery as the front door and the catalog as the building behind it.
+</Accordion>
+
+<Accordion title="What is Data Observability?">
+  _Is the data behaving normally?_
+
+  Continuous monitoring of data health over time, catching anomalies before users notice. It's a signal.
+
+  - Focuses on change and drift — volume dropped, schema changed, freshness delayed, distribution shifted
+  - Produces alerts, incidents, SLA breaches
+  - Forward-looking and continuous — "something changed, investigate now"
+  - Example: "Row count dropped 40% compared to yesterday's average — anomaly detected"
+</Accordion>
+
+<Accordion title="What is Data Quality?">
+  _Is the data correct?_
+
+  A measurement of whether data meets defined standards at a point in time. It's a verdict.
+
+  - Focuses on the data itself — completeness, accuracy, consistency, uniqueness, timeliness, validity
+  - Produces a score, a pass/fail, a rule result
+  - Backward-looking — "was this data good when it was loaded?"
+  - Example: "12.7% of customer\_id values are null — that fails our threshold"
+</Accordion>
+
+<Accordion title="Does Prizm provide Data Observability or Quality or both?">
+  This where Prizm’s power comes in — semantics without context is just a label; context without semantics is just noise. 
+
+  1. Semantics tells Prizm: “This is customer data, it’s PII, it’s a key business entity” 
+  2. Context tells Prizm: “This specific instance flows into 12 downstream reports, was touched by 3 pipelines today, and is used by the finance team daily” 
+  3. Together, Prizm’s  can say: “There’s a data quality issue here — and it’s high priority because of what this data means AND how critical it is to the business right now” 
+
+  That combined intelligence is what is provided as part of Prizm
+</Accordion>
+
+<Accordion title="What is Semantic?">
+  Semantics is about the **inherent meaning and definition** of a data element — what it represents in business terms, independent of how it’s being used. 
+
+  **Example:** A column called cust\_id in a database table. 
+
+  - Semantics tells you: _“This is a Customer Identifier — a unique reference to a person or organization that has a business relationship with the company”_ 
+  - It gets tagged with business terms like: Customer, PII, Primary Key, CRM Entity 
+  - This meaning is **stable** — cust\_id means the same thing whether it appears in a sales table, a support ticket table, or a billing table 
+</Accordion>
+
+<Accordion title="What is Context?">
+  Context is about the **circumstances surrounding data** — who uses it, where it flows, what depends on it, and what impact it has on the business. 
+
+  **Example:** That same cust\_id column — now let’s add context: 
+
+  - It feeds into the **daily revenue dashboard** used by the CFO 
+  - It’s joined to a pipeline that triggers **customer invoices** 
+  - It was flagged with 3% null values last Tuesday 
+  - It’s downstream of a Salesforce sync that ran late 
+
+  **Context tells you:** 
+
+  - _This particular instance of cust\_id is business-critical_ 
+  - _A data issue here affects revenue reporting and invoicing_ 
+  - _This needs to be prioritized over a cust\_id sitting in an archive table nobody uses_ 
+</Accordion>
+
+<Accordion title="Compare Semantic vs Context">
+  |  | **Semantics** | **Context** |
+  | :-: | :-: | :-: |
+  | **Question** | What does this data mean? | Why does this data matter right now? |
+  | **Nature** | Static definition | Dynamic and situational |
+  | **Example** | cust\_id = Customer Identifier | cust\_id feeds the CFO dashboard and invoice pipeline |
+  | **Set by** | Business glossary, classification | Lineage, usage patterns, downstream dependencies |
+  | **Changes over time?** | Rarely | Constantly |
+</Accordion>
+
+<Accordion title="Does Prizm provide Semantic or Context or both?">
+  This where Prizm’s power comes in — semantics without context is just a label; context without semantics is just noise. 
+
+  1. Semantics tells Prizm: “This is customer data, it’s PII, it’s a key business entity” 
+  2. Context tells Prizm: “This specific instance flows into 12 downstream reports, was touched by 3 pipelines today, and is used by the finance team daily” 
+  3. Together, Prizm’s  can say: “There’s a data quality issue here — and it’s high priority because of what this data means AND how critical it is to the business right now” 
+
+  That combined intelligence is what is provided as part of Prizm
+</Accordion>
+
+## Getting started
+
+<AccordionGroup>
+  <Accordion title="What is PRIZM?">
+    PRIZM is a data quality and observability platform built by DQLabs. It connects to your databases and data warehouses, catalogs your data assets, and continuously monitors them for quality issues. You can track metrics like freshness, completeness, and schema compliance across all your connected sources from a single dashboard — and get notified when something drifts outside acceptable bounds.
+  </Accordion>
+
+  <Accordion title="Which data sources does PRIZM support?">
+    PRIZM connects to a range of popular databases and cloud data warehouses. Based on supported integrations, the platform works with:
+
+    - **Snowflake** (e.g., `snowflake/production_db`)
+    - **PostgreSQL** (e.g., `postgres/analytics_db`)
+    - **MySQL** (e.g., `mysql/ecommerce_db`)
+    - **Amazon Redshift** (e.g., `redshift/warehouse_db`)
+
+    Contact your PRIZM administrator to add or configure a new data source connection.
+  </Accordion>
+
+  <Accordion title="How do I create an account?">
+    On the PRIZM login screen, click **Create new account** below the sign-in form. Depending on your organization's settings, account creation may require administrator approval before you can sign in. If you don't receive access promptly, check with your PRIZM administrator.
+  </Accordion>
+</AccordionGroup>
+
+## Assets
+
+<AccordionGroup>
+  <Accordion title="What is an asset in PRIZM?">
+    An asset is any data object that PRIZM monitors in your connected databases. Assets include:
+
+    - **Tables & Views** — relational tables and database views
+    - **Queries** — saved or scheduled SQL queries
+    - **Pipelines** — data pipeline jobs moving or transforming data
+    - **Reports** — reporting objects or materialized outputs
+    - **Semantic models** — logical data models and definitions
+
+    You can browse and search all assets from the **Assets** page, and filter by type using the tab navigation (All, Tables & Views, Query, Pipeline, Reports, Semantics).
+  </Accordion>
+
+  <Accordion title="What is a fingerprint column?">
+    A fingerprint column is the column PRIZM uses to detect changes in an asset's data over time. It is typically a timestamp column such as `updated_at`, `transaction_date`, or `last_login`. PRIZM reads this column to determine when the data was last modified, which directly feeds the **Freshness** metric. Your PRIZM administrator configures the fingerprint column for each asset during setup.
+  </Accordion>
+
+  <Accordion title="What does the Score metric mean?">
+    The Score is an overall data quality rating for an asset, expressed as a percentage from 0 to 100%. It aggregates multiple quality dimensions — such as completeness, freshness, schema compliance, and custom measure results — into a single number. A higher score means the asset is meeting more of its configured quality expectations. Use the Score to quickly identify assets that need attention.
+  </Accordion>
+
+  <Accordion title="What is Freshness?">
+    Freshness tells you how recently an asset's data was last updated. PRIZM calculates it using the asset's fingerprint column. A freshness value of **2d** means the most recent record is two days old. If your asset is expected to update daily but shows a freshness of 5d, that is a signal worth investigating. Freshness thresholds can be configured as measures so PRIZM fires an alert when data goes stale.
+  </Accordion>
+</AccordionGroup>
+
+## Alerts & Issues
+
+<AccordionGroup>
+  <Accordion title="What triggers an alert?">
+    Alerts are created automatically when a **measure's definition threshold is breached**. A measure is a configured rule or check on an asset — for example, "the null rate on `email` must stay below 5%" or "the row count must not drop by more than 10% day over day." When PRIZM evaluates a measure and finds the threshold has been exceeded, it generates an alert. Alerts appear on the **Alerts** page, categorized by level: Critical, Warning, Info, or High.
+  </Accordion>
+
+  <Accordion title="What is drift status?">
+    Drift status indicates how much an asset's data has deviated from its established baseline. PRIZM calculates drift by comparing current values against historical patterns for a given column or measure. The possible statuses are:
+
+    - **Low** — minor deviation, within normal variation
+    - **Medium** — notable deviation that warrants review
+    - **High** — significant deviation that likely requires action
+
+    You can see the drift status for each alert in the Alerts table alongside the specific percent change that triggered it.
+  </Accordion>
+
+  <Accordion title="How is an alert different from an issue?">
+    Alerts and issues serve different purposes in PRIZM's quality workflow:
+
+    - An **alert** is an automated notification generated when a measure threshold is breached. Alerts are read-only records of what PRIZM detected.
+    - An **issue** is a tracked work item you create and manage through to resolution. Issues have a status (New, In Progress, Resolved), a priority, and are linked to a specific asset and database.
+
+    When you want to act on an alert, navigate to the **Issues** page and create or update an issue to track the investigation and resolution.
+  </Accordion>
+
+  <Accordion title="Can I silence or acknowledge an alert?">
+    PRIZM does not currently offer a one-click silence or acknowledge action directly on an alert. To track your response to an alert, open the **Issues** page and create a new issue linked to the affected asset. Set the status to **In Progress** while you investigate, and mark it **Resolved** once the underlying data problem is fixed. This gives your team full visibility into which alerts are being handled.
+  </Accordion>
+</AccordionGroup>
+
+## Metrics
+
+<AccordionGroup>
+  <Accordion title="What is the Data Quality percentage?">
+    The Data Quality percentage is an aggregated score that reflects the overall health of your monitored data assets. It combines results across multiple quality dimensions including completeness, freshness, schema compliance, and any custom measure checks you have configured. The score is calculated across all connected assets, so a drop in the percentage typically means one or more assets have started failing their quality checks. Drill into the **Assets** page to find which specific assets are contributing to a lower score.
+  </Accordion>
+
+  <Accordion title="What does 'Active Pipelines' mean?">
+    Active Pipelines shows the number of data pipelines that PRIZM is currently monitoring. This count is broken down by running pipelines (actively executing) and paused pipelines (configured but not currently running). If a pipeline you expect to be running appears paused, contact your data administrator to investigate the pipeline status in the source system.
+  </Accordion>
+</AccordionGroup>

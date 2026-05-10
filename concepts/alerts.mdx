@@ -1,0 +1,53 @@
+---
+title: "Alerts: Automatic data drift and quality notifications"
+description: "PRIZM alerts fire automatically when a measure threshold is breached. Each alert carries a severity level, a drift status, and a percent change value."
+---
+
+Alerts are created automatically when a measure's definition is triggered. For example, if a freshness check detects that a table has not been updated within the expected window, or if a data drift monitor finds that a column's distribution has shifted beyond its configured threshold, PRIZM opens an alert and surfaces it in the Alerts page. Each alert records the severity of the problem, how far the data has drifted from its baseline, and which asset is affected, so you can quickly assess impact and decide whether to open an issue.
+
+## Alert severity levels
+
+PRIZM classifies every alert into one of four severity levels. The severity reflects how urgently the underlying problem needs attention.
+
+<CardGroup cols={2}>
+  <Card title="Critical" icon="circle-xmark">
+    The highest severity level. A Critical alert means a measure has breached its threshold in a way that is likely to have an immediate, significant impact on data consumers. Treat Critical alerts as the highest priority and investigate them first.
+  </Card>
+  <Card title="High" icon="clock">
+    A High alert signals an elevated risk that has not yet reached Critical level but is time-sensitive. The condition is expected to worsen if left unaddressed.
+  </Card>
+  <Card title="Warning" icon="triangle-alert">
+    A Warning alert indicates that a measure is approaching its threshold or has exceeded a soft limit. Warnings are useful for early detection — they give you time to investigate before the problem becomes Critical.
+  </Card>
+  <Card title="Info" icon="info">
+    An Info alert is informational and does not require immediate action. It records events such as schema changes, completed pipelines, or low-risk threshold breaches for audit and traceability purposes.
+  </Card>
+</CardGroup>
+
+## Alert table columns
+
+The alerts table lists every active and historical alert with the following columns:
+
+| Column | Description |
+|---|---|
+| **Alerts** | The name of the alert rule that fired — a short description of what the measure detected (for example, `The Last Updated failed for value 7h 16m 23s`). |
+| **ID** | A unique identifier for the alert record (for example, `5754d65fad3242f38ed63986dd2cbfed`). Use this ID when referencing an alert in an issue, a ticket, or a support request. |
+| **Drift Status** | How far the measured value has drifted from its baseline: `Low`, `Medium`, or `High`. |
+| **Percent Change** | The numerical magnitude of the drift expressed as a percentage (for example, `13.03%`). A larger value indicates a more significant deviation from the expected baseline. |
+| **Level** | The scope at which the alert was raised. `Asset`-level alerts apply to a specific data asset rather than to an individual column or row. |
+
+## Drift status
+
+Drift status describes the degree to which a measured value has deviated from its established baseline.
+
+- **Low** — The value has changed, but the change is within an acceptable range. The alert is recorded for visibility, but no immediate action is required.
+- **Medium** — The value has drifted noticeably beyond the expected range. Investigate the upstream source to understand the cause.
+- **High** — The value has drifted significantly. The data is likely unreliable for downstream consumers until the root cause is identified and resolved.
+
+## Alert level
+
+The **Level** column indicates the scope of the alert. Currently, PRIZM raises **Asset**-level alerts, meaning the alert applies to an entire data asset — a table, view, query, pipeline, or semantic model — rather than to a single row or field. When you see `Asset` in the Level column, navigate to the asset's detail page to see the full context, including which metrics triggered the alert and what the recent trend looks like.
+
+<Note>
+  Alerts are read-only in the Alerts view. You cannot assign, comment on, or close an alert from this page. Navigate to **Issues** to create a trackable work item for a data quality problem and manage it through to resolution.
+</Note>

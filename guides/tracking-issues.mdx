@@ -1,0 +1,77 @@
+---
+title: "Track and resolve data quality issues with PRIZM Issues"
+description: "Use the PRIZM Issues page to manage data quality problems from detection through resolution using priority levels and status workflows."
+---
+
+The Issues page is where data quality problems go from detection to resolution. While Alerts surface triggered conditions automatically, Issues are the structured records your team uses to assign ownership, track progress, and confirm fixes. PRIZM's Issues page gives you a live count of problems by status and a table of all active and resolved records with enough context — asset name, database, priority, and current status — to triage at a glance.
+
+## Working with issues
+
+<Steps>
+  <Step title="Open the Issues page">
+    Click **Issues** in the top navigation bar. The page displays a summary row of status cards and a detailed issues table beneath.
+  </Step>
+  <Step title="Review the status summary cards">
+    Four metric cards show a real-time count of issues by lifecycle stage:
+
+    | Card | Count (example) | What it means |
+    |---|---|---|
+    | **New** | 15 | Detected but not yet assigned or investigated |
+    | **In Progress** | 11 | Actively being worked on by a team member |
+    | **Resolved** | 9 | Fixed and confirmed closed |
+    | **All** | 35 | Total issues across all statuses |
+  </Step>
+  <Step title="Read the issues table">
+    The table lists every issue with the following columns:
+
+    - **Issue** — A description of the problem detected, including which validation failed and what symptom was observed.
+    - **Asset** — The name of the data asset where the problem was found, such as `customer_profiles` or `order_details`.
+    - **Database** — The database where the asset lives, such as `production_db` or `analytics_db`.
+    - **Priority** — How urgently the issue needs attention: High, Medium, or Low.
+    - **Status** — The current stage in the resolution workflow: New, In Progress, or Resolved.
+  </Step>
+  <Step title="Open an issue for details">
+    Click any row in the table to open the full issue record. Here you can read the complete problem description, see which alert triggered the issue, review any notes left by your team, and take action.
+  </Step>
+  <Step title="Update the status as you work">
+    Move the issue through the workflow as your team makes progress:
+
+    **New** → **In Progress** → **Resolved**
+
+    Keeping status current ensures your colleagues always know which problems are being actively worked and which are waiting for attention.
+  </Step>
+</Steps>
+
+## Issue priority guide
+
+Priority tells you how quickly a problem needs to be addressed relative to your team's other work:
+
+- **High** — Immediate action required. The issue is impacting production data and likely affecting downstream consumers, dashboards, or business decisions. Escalate and assign ownership right away.
+- **Medium** — Should be addressed within the current sprint. The issue is real but not causing an outage or immediate downstream impact. Schedule it before the sprint ends.
+- **Low** — Cosmetic or minor issues that do not affect data consumers today. Add to the backlog and address when bandwidth allows.
+
+## Example issues
+
+The following are representative examples of the types of issues PRIZM surfaces:
+
+<CardGroup cols={1}>
+  <Card title="Email validation failed — NULL values detected in customer profiles" icon="circle-xmark" href="/guides/managing-alerts">
+    **Asset:** `customer_profiles` | **Database:** `production_db` | **Priority:** High | **Status:** New
+
+    NULL values in a required email field can break downstream CRM sync jobs and email marketing workflows. Investigate the ingestion pipeline for this asset immediately.
+  </Card>
+  <Card title="Order amount validation error — Negative values found in order details" icon="triangle-alert" href="/guides/managing-alerts">
+    **Asset:** `order_details` | **Database:** `analytics_db` | **Priority:** Medium | **Status:** In Progress
+
+    Negative order amounts indicate a data entry or transformation bug. Revenue reports may be understated until this is corrected.
+  </Card>
+  <Card title="Product catalog consistency issue — Duplicate entries found" icon="info" href="/guides/managing-alerts">
+    **Asset:** `product_catalog` | **Database:** `warehouse_db` | **Priority:** Low | **Status:** Resolved
+
+    Duplicate product records can inflate inventory counts in reporting. This issue has been resolved and confirmed closed.
+  </Card>
+</CardGroup>
+
+<Tip>
+Keep issue statuses up to date so your team always knows what is actively being worked on and what is waiting. An accurate issues board also helps you report data quality progress to stakeholders.
+</Tip>

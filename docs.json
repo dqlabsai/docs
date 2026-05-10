@@ -1,0 +1,66 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "luma",
+  "name": "DQLabs PRIZM",
+  "colors": {
+    "primary": "#e40404",
+    "light": "#f9cdcd",
+    "dark": "#747474"
+  },
+  "favicon": "https://media.brand.dev/9afdd2b1-c5b5-4aba-87dd-63e926be4e0e.jpg",
+  "logo": {
+    "light": "https://media.brand.dev/332adc35-5bc4-4d2b-bf78-256aa4a5e414.svg",
+    "dark": "https://media.brand.dev/332adc35-5bc4-4d2b-bf78-256aa4a5e414.svg"
+  },
+  "navbar": {
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/DQLabs-Inc/prizm-ui"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "login"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "concepts/assets",
+              "concepts/metrics",
+              "concepts/alerts",
+              "concepts/issues"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/navigating-dashboard",
+              "guides/searching-assets",
+              "guides/asset-details",
+              "guides/managing-alerts",
+              "guides/tracking-issues",
+              "guides/analytics",
+              "guides/chat-assistant"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "faq",
+              "troubleshooting"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

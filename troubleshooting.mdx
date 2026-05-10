@@ -1,0 +1,159 @@
+---
+title: "Troubleshoot login, assets, alerts, and performance in PRIZM"
+description: "Step-by-step solutions for login failures, missing assets, confusing alert counts, and slow page loads you may encounter while using PRIZM."
+---
+
+Most problems in PRIZM fall into a handful of categories: trouble signing in, assets that are hard to find or incomplete, alerts that don't match your expectations, and pages that load slowly. Work through the relevant section below to resolve your issue. If you're still stuck after trying these steps, [contact DQLabs support](mailto:support@dqlabs.ai).
+
+## Login & Access
+
+<AccordionGroup>
+  <Accordion title="I can't log in — what should I check?">
+    Before contacting your administrator, work through these checks in order:
+
+    <Steps>
+      <Step title="Verify your email address">
+        Re-enter your email carefully. A single transposed character will cause authentication to fail silently.
+      </Step>
+      <Step title="Check Caps Lock">
+        Passwords are case-sensitive. Make sure Caps Lock is off before typing your password.
+      </Step>
+      <Step title="Reset your password">
+        Click **Forgot your password?** on the login screen and follow the instructions sent to your email.
+      </Step>
+      <Step title="Contact your PRIZM administrator">
+        If you have confirmed your credentials are correct, your account may be locked or not yet approved. Ask your PRIZM administrator to check your account status.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="I'm being redirected to login even though I was already signed in">
+    Your session has most likely expired. PRIZM uses session tokens that time out after a period of inactivity.
+
+    Sign in again — PRIZM will automatically redirect you back to the page you were trying to access when your session expired, so you won't lose your place.
+
+    <Note>
+      If this happens repeatedly within a short time window, check whether browser extensions or privacy settings are interfering with PRIZM. Try signing in using a private/incognito browser window to rule out extension conflicts.
+    </Note>
+  </Accordion>
+
+  <Accordion title="The 'Create new account' button doesn't create my account">
+    In many organizations, new PRIZM accounts require administrator approval before they become active. Clicking **Create new account** submits your request, but you may not be able to sign in immediately.
+
+    Check with your PRIZM administrator to confirm whether:
+    - Your request has been received and is pending approval
+    - Your organization requires accounts to be provisioned manually by an admin
+    - Your email domain is on an allowed list for self-registration
+
+    <Tip>
+      If your organization uses SSO (single sign-on), you may need to sign in through your identity provider rather than using the standard email and password form.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## Assets & Search
+
+<AccordionGroup>
+  <Accordion title="I can't find an asset I know exists">
+    Try the following steps to locate a missing asset:
+
+    <Steps>
+      <Step title="Adjust your search term">
+        Use a partial name rather than the full name. PRIZM's search supports partial matches, so searching `customer` will surface `customer_transactions`, `customer_profiles`, and similar assets.
+      </Step>
+      <Step title="Check the active type filter">
+        The Assets page has tabs for All, Tables & Views, Query, Pipeline, Reports, and Semantics. Make sure you're on the correct tab — an asset won't appear if its type is filtered out.
+      </Step>
+      <Step title="Confirm the asset is connected">
+        If the asset exists in your database but not in PRIZM, it may not have been added to a monitored connection yet. Contact your data administrator to connect the source and run an initial catalog scan.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Asset details are missing Schema or Lineage information">
+    Schema and Lineage data is populated by PRIZM's background data collectors, which crawl your connected sources on a schedule.
+
+    If Schema or Lineage sections appear empty on an asset detail page, one of the following is likely:
+
+    - The collector has not run yet after the asset was first added — wait for the next scheduled run or ask your administrator to trigger one manually.
+    - The data collector encountered an error during its last run — contact your PRIZM administrator to investigate and reconfigure the connection if needed.
+    - The asset type does not support lineage tracking in the current connector configuration.
+
+    <Warning>
+      Do not assume an empty Lineage view means the asset has no upstream or downstream dependencies. Always verify with your data administrator before making changes to an asset.
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## Alerts
+
+<AccordionGroup>
+  <Accordion title="I see 0 alerts but expected some">
+    Alerts are only generated when a **measure definition threshold is breached**. If no measures have been configured for your assets, PRIZM has no rules to evaluate and will produce no alerts — regardless of what the data looks like.
+
+    Check the following:
+
+    - Navigate to the asset you're monitoring and confirm that measures are defined on it.
+    - Ask your PRIZM administrator to verify that measure thresholds are set up and that the evaluation schedule is active.
+    - Confirm the time window you're viewing — alerts from outside the selected period won't appear in the current list.
+
+    <Note>
+      Alert counts on the Alerts page reflect current active alerts. If a previous alert was resolved or its measure was removed, the count will be lower than you expect.
+    </Note>
+  </Accordion>
+
+  <Accordion title="An alert shows a high percent change but the data looks fine">
+    A large percent change in an alert does not always mean there is a real data problem. Two common explanations are:
+
+    1. **The baseline needs recalibration.** PRIZM compares current values against a historical baseline. If the data has legitimately shifted (for example, after a migration or a seasonal spike), the baseline may no longer reflect the expected range. Contact your data administrator to recalibrate the baseline for the affected measure.
+
+    2. **The triggered column is not the one you expect.** Review the **Drift Status** column and the specific measure name in the alert details to confirm which column or check triggered the alert. It may be a different column than the one you manually inspected.
+
+    <Tip>
+      Use the Issues page to log your investigation. Documenting what you found — even when the data looks fine — helps your team avoid re-investigating the same alert in the future.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## Performance
+
+<AccordionGroup>
+  <Accordion title="Pages load slowly">
+    If PRIZM pages are taking a long time to render, work through these steps:
+
+    <Steps>
+      <Step title="Check your network connection">
+        A weak or unstable connection is the most common cause of slow page loads. Test your connection speed and switch networks if possible.
+      </Step>
+      <Step title="Navigate directly using search">
+        Browsing all assets on the Assets page requires loading a large dataset. Use the search bar (or press **⌘ K**) to jump directly to the asset you need instead of scrolling through the full list.
+      </Step>
+      <Step title="Wait for the initial load to complete">
+        On your first visit to a page in a session, PRIZM fetches and renders the full dataset for that view. Subsequent visits to the same page in the same session are typically faster.
+      </Step>
+    </Steps>
+
+    <Note>
+      If slowness persists across multiple sessions and network conditions, report it to your PRIZM administrator so they can investigate platform performance.
+    </Note>
+  </Accordion>
+
+  <Accordion title="The Analytics page shows unexpected numbers">
+    Analytics data in PRIZM is aggregated over configurable time windows. Before assuming a number is wrong, verify the time period the page is currently displaying.
+
+    - **Last 24 hours** — shows only data from the past day; recent issues may not yet be reflected if the aggregation job hasn't run.
+    - **Last 30 days** — shows a rolling monthly view; a spike earlier in the month can pull averages up or down significantly.
+
+    Switch the time period selector to confirm whether the numbers change as expected. If the numbers still look wrong after accounting for the time window, contact your data administrator to check whether the Analytics collectors are running on schedule.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Card
+  title="Still stuck? Contact DQLabs support"
+  icon="envelope"
+  href="mailto:support@dqlabs.ai"
+>
+  Reach out to the DQLabs support team for hands-on help with any issue you can't resolve on your own.
+</Card>

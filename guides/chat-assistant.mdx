@@ -1,0 +1,61 @@
+---
+title: "Use the PRIZM AI Chat Assistant to explore your data"
+description: "Use PRIZM's AI Chat Assistant to query pipeline status, current alerts, and asset health in natural language — no SQL or technical expertise required."
+---
+
+PRIZM includes an AI-powered Chat Assistant that lets you ask questions about your data in natural language — no SQL required. Instead of navigating to multiple pages to piece together a picture of your data environment, you can type a question directly and get a focused answer drawn from your live PRIZM data. The Chat Assistant is designed for quick status checks, so you can stay in flow while keeping an eye on data quality.
+
+## Opening the Chat Assistant
+
+The Chat Assistant appears as a panel on the right side of the PRIZM interface. It is always available while you are working in PRIZM — you do not need to navigate away from your current page to access it. Click the panel to expand it and begin a conversation.
+
+## What you can ask
+
+The Chat Assistant understands questions about your PRIZM environment. Three pre-built suggestion buttons give you a head start:
+
+<CardGroup cols={1}>
+  <Card title="Show pipeline status" icon="chart-line" href="/concepts/metrics">
+    Get a summary of which pipelines are currently running, queued, or completed. Useful for a quick morning check before your team starts working with new data.
+  </Card>
+  <Card title="Current alerts" icon="bell" href="/guides/managing-alerts">
+    Ask the assistant to surface your active alerts without navigating to the Alerts page. Helpful when you want a quick count or summary of what is triggered right now.
+  </Card>
+  <Card title="Asset Status" icon="database" href="/guides/asset-details">
+    Get a health summary for a specific asset or for assets across your catalog. Useful for confirming that a key table is in a healthy state before a scheduled report runs.
+  </Card>
+</CardGroup>
+
+You can also type free-form questions. For example:
+
+> "Scan freshness for sales tables"
+
+This asks the assistant to check when the sales-related tables were last updated and report on any freshness issues it finds.
+
+## How to use the Chat Assistant
+
+<Steps>
+  <Step title="Open the Chat Assistant panel">
+    Click the Chat Assistant panel on the right side of the PRIZM interface to expand it. The panel displays the PRIZM logo, a welcome message, and three suggestion buttons.
+  </Step>
+  <Step title="Choose a suggestion or type your question">
+    Click one of the pre-built suggestion buttons — **Show pipeline status**, **Current alerts**, or **Asset Status** — to submit that question instantly. Alternatively, click the text input field at the bottom of the panel and type your own question.
+  </Step>
+  <Step title="Submit your question">
+    Press **Enter** on your keyboard or click the send button (the arrow icon →) on the right side of the input field to submit your question.
+  </Step>
+  <Step title="Review the response">
+    The assistant responds with relevant data pulled from your PRIZM environment. Responses are contextual — a question about "alerts" returns your actual current alerts, not generic examples.
+  </Step>
+</Steps>
+
+## Voice input
+
+If you prefer to speak rather than type, click the **microphone icon** in the input field to use voice input. Speak your question and the assistant will transcribe and process it.
+
+<Tip>
+Start with the pre-built suggestion buttons to get a feel for what the Chat Assistant can answer. Once you are comfortable, try free-form questions tailored to your specific assets and pipelines.
+</Tip>
+
+<Note>
+The Chat Assistant understands context from your PRIZM environment. When you ask about "alerts" or "pipelines," it refers to your actual live data — not generic or sample data. Results reflect the current state of your connected data sources.
+</Note>

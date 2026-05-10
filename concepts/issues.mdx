@@ -1,0 +1,68 @@
+---
+title: "Issues: Manage data quality problems from detection to fix"
+description: "PRIZM issues provide a structured workflow to assign, track, and resolve data quality problems across priority levels and lifecycle statuses."
+---
+
+Issues are the action layer in PRIZM. While alerts tell you that something has gone wrong, issues give your team a structured place to own, investigate, and resolve data quality problems. Each issue is linked to the affected asset and database, carries a priority and a status, and moves through a defined lifecycle from the moment it is detected to the moment it is fixed and verified. Use the Issues page to manage your team's data quality backlog and ensure nothing falls through the cracks.
+
+## Issue statuses
+
+Every issue moves through three statuses that reflect where it sits in the resolution workflow.
+
+- **New** — The issue has been created but no one has started working on it yet. New issues represent your unactioned backlog. Review them regularly to decide whether to prioritise, deprioritise, or close them.
+- **In Progress** — A team member has picked up the issue and is actively investigating or fixing the underlying problem. Issues in this state should have a clear owner.
+- **Resolved** — The problem has been fixed and the data quality check has passed or been verified. Resolved issues remain visible in the table for audit and trend purposes.
+
+## Issue priorities
+
+Priority tells your team how urgently an issue needs attention relative to other open issues.
+
+| Priority | When to use it |
+|---|---|
+| **High** | The data quality problem is affecting critical downstream processes, reports, or consumers right now. Assign High priority when the impact is immediate and broad. |
+| **Medium** | The problem is real and needs to be addressed, but it is not causing an immediate outage or blocking critical work. Address Medium issues in the current sprint or planning cycle. |
+| **Low** | The issue is a known imperfection with limited downstream impact. Track it for completeness but do not let it block higher-priority work. |
+
+## Issue table columns
+
+The issues table gives you a row per issue with the following columns:
+
+| Column | Description |
+|---|---|
+| **Issue** | A description of the data quality problem (for example, `Email validation failed - NULL values detected in customer profiles`). |
+| **Asset** | The name of the data asset where the problem was detected (for example, `customer_profiles`). Click the asset name to open its detail view. |
+| **Database** | The source database containing the affected asset (for example, `production_db`). |
+| **Priority** | The priority level assigned to the issue: `High`, `Medium`, or `Low`. |
+| **Status** | The current status of the issue: `New`, `In Progress`, or `Resolved`. |
+
+## Issue lifecycle
+
+<Steps>
+  <Step title="Problem detected">
+    A data quality problem is detected — either automatically by a PRIZM alert firing on a measure breach, or manually by a data engineer or analyst who notices an anomaly during their own investigation.
+  </Step>
+  <Step title="Issue created">
+    An issue is created with status **New**, linked to the affected asset and database, and assigned a priority. It appears in the issues table immediately so the whole team can see it.
+  </Step>
+  <Step title="Issue picked up">
+    A team member takes ownership of the issue. The status moves to **In Progress**, signalling to others that someone is actively investigating and that the issue is not available to be picked up again.
+  </Step>
+  <Step title="Problem resolved">
+    The underlying problem is fixed — for example, a pipeline is corrected, a NULL constraint is enforced, or a data source is reloaded. After verifying that the relevant data quality check passes, the team member marks the issue **Resolved**.
+  </Step>
+</Steps>
+
+## Issue metrics at a glance
+
+The four KPI cards at the top of the Issues page summarise your current issue backlog:
+
+| Card | Example value | What it means |
+|---|---|---|
+| **New** | 15 | Issues that have been created but not yet picked up. |
+| **In Progress** | 11 | Issues that a team member is actively working on. |
+| **Resolved** | 9 | Issues that have been closed after verification. |
+| **All** | 35 | Total issues across all statuses. |
+
+<Tip>
+  Use the **Priority** and **Status** filters above the issues table to focus your view. For example, filter to `Priority: High` and `Status: New` to see the most urgent unactioned issues without scrolling through the entire backlog.
+</Tip>

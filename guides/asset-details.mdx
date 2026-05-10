@@ -1,0 +1,88 @@
+---
+title: "Explore asset details, schema, lineage, and metrics"
+description: "Use PRIZM's asset detail view to inspect schema, metrics, lineage, documentation, and recent alerts for any data asset in your catalog."
+---
+
+Every asset in PRIZM has a dedicated detail page that consolidates everything you need to understand its health and structure. From schema definitions and quality metrics to upstream lineage and attached documentation, the asset detail page is where you investigate anomalies, confirm data freshness, and verify who owns a dataset. Open it by clicking any asset name in the Assets catalog.
+
+## Opening an asset detail page
+
+<Steps>
+  <Step title="Go to Assets">
+    Click **Assets** in the top navigation bar to open the asset catalog.
+  </Step>
+  <Step title="Click the asset name">
+    Find the asset you want to inspect in the table and click its name. For example, click `customer_transactions` to open that asset's detail page.
+  </Step>
+  <Step title="Review the Overview tab">
+    You land directly on the **Overview** tab, which shows key quality metrics, recent alerts, and asset metadata at a glance.
+  </Step>
+</Steps>
+
+<Note>
+Click the **Back to Assets** button in the top-left corner of the detail page to return to the full asset catalog at any time.
+</Note>
+
+## Asset header
+
+The header at the top of the detail page gives you a quick summary of the asset's identity and status:
+
+- **Name** — The asset name (for example, `customer_transactions`), accompanied by a storage icon indicating it is a database table.
+- **Source path** — The platform and database path where the asset lives, such as `snowflake/production_db`.
+- **Owners** — The user group responsible for the asset, displayed as a grouped avatar list (for example, John Smith, Sarah Wilson, and Mike Chen).
+- **Last updated** — The date the asset was most recently modified (for example, `Updated 20/01/2024`).
+- **Tags** — Color-coded chips that classify the asset across multiple dimensions:
+  - **Status** — for example, `Healthy`
+  - **Domain** — for example, `Customer`, `Sales`, `Finance`
+  - **System** — for example, `CRM`
+  - **Data** — for example, `Transactions`
+  - **Priority** — for example, `High Priority`
+  - **Security** — for example, `PII`
+
+## Detail tabs
+
+Use the tab row below the asset header to switch between different views of the asset.
+
+<Tabs>
+  <Tab title="Overview">
+    The Overview tab is divided into two panels.
+
+    **Key Metrics** shows five at-a-glance quality indicators for the asset:
+
+    | Metric | What it measures |
+    |---|---|
+    | **Volume** | Total row count — for example, `2.5M` |
+    | **Schema** | Number of columns — for example, `8` |
+    | **Freshness** | Time since last data update — for example, `2d` |
+    | **Metrics** | Number of quality metrics configured — for example, `4` |
+    | **Score** | Overall quality score — for example, `85%` |
+
+    **Recent Alerts** lists the most recent alerts triggered for this asset, including the alert title, severity badge, description, source monitor, and how long ago the alert fired. Example alerts include:
+
+    - *Data Quality Score Drop* (Critical) — "Quality score has dropped below 85% threshold" — 2 hours ago
+    - *Schema Change Detected* (Warning) — "New column added to customer_transactions table" — 1 day ago
+    - *Pipeline Completed* (Info) — "Daily ETL pipeline completed successfully" — 3 hours ago
+
+    **Asset Information** (right panel) shows structured metadata:
+
+    | Field | Example value |
+    |---|---|
+    | Type | `Table` |
+    | Size | `2.4 KB` |
+    | Identifier | `transaction_id` |
+    | Fingerprint Column | `updated_at` |
+    | Tags | Domain, system, data, priority, and security chips |
+  </Tab>
+  <Tab title="Schema">
+    The Schema tab lists every column in the asset along with its data type and any constraints or descriptions attached to it. Use this tab to verify field names match what your downstream consumers expect, or to confirm that a schema change alert reflects a real structural difference.
+  </Tab>
+  <Tab title="Metrics">
+    The Metrics tab shows asset-level quality metrics tracked over time. Review trends in volume, freshness, completeness, and other configured measures to identify when a data quality problem started or whether it has been resolved.
+  </Tab>
+  <Tab title="Lineage">
+    The Lineage tab maps upstream and downstream data dependencies for the asset. Use it to understand where data comes from (sources, transformations, and pipelines) and which downstream tables, reports, or models depend on this asset. This helps you assess the blast radius of a data quality issue.
+  </Tab>
+  <Tab title="Documentation">
+    The Documentation tab surfaces any documentation attached directly to the asset — descriptions, data dictionaries, usage notes, and links to external references. Add or update documentation here to help data consumers understand the asset's purpose and conventions.
+  </Tab>
+</Tabs>

@@ -1,0 +1,99 @@
+---
+title: "Assets: Discover and manage your data catalog in PRIZM"
+description: "Assets are the tables, views, queries, pipelines, reports, and semantic models PRIZM tracks across your connected databases and data platforms."
+---
+
+Assets are the central objects in PRIZM. Every table, view, query, pipeline, report, and semantic model connected to your data sources appears as an asset, giving you a single place to search, inspect, and monitor your entire data catalog. When you open the Assets page you can search across all databases and platforms, filter by asset type, and drill into any individual asset to see its schema, metrics, lineage, and documentation.
+
+## Asset types
+
+PRIZM organises assets into six categories. Use the tab bar on the Assets page to filter the list to the type you need.
+
+<AccordionGroup>
+  <Accordion title="All">
+    The default view shows every asset PRIZM has discovered across all connected sources — tables, views, queries, pipelines, reports, and semantic models together. Use this view when you want a broad search or are not sure which type an asset belongs to.
+  </Accordion>
+
+  <Accordion title="Tables & Views">
+    Physical tables and database views from connected sources such as Snowflake, PostgreSQL, MySQL, and Amazon Redshift. These assets contain row-level data and are the most common subjects of data quality monitoring, schema tracking, and freshness checks.
+  </Accordion>
+
+  <Accordion title="Query">
+    Saved SQL queries that PRIZM tracks as first-class assets. Monitoring a query asset lets you observe the shape and quality of query results over time without waiting for a downstream table to be written.
+  </Accordion>
+
+  <Accordion title="Pipeline">
+    Data pipelines — such as ETL and ELT jobs — that move or transform data between systems. Pipeline assets let you correlate pipeline execution status with data quality events on the assets they produce.
+  </Accordion>
+
+  <Accordion title="Reports">
+    BI reports and dashboards that consume data assets. Tracking reports as assets helps you understand the downstream impact of a data quality problem: which reports are affected when an upstream table degrades.
+  </Accordion>
+
+  <Accordion title="Semantics">
+    Semantic models and metric layers that define business logic on top of raw data. Semantic assets capture the definitions — measures, dimensions, joins — that translate raw columns into business concepts.
+  </Accordion>
+</AccordionGroup>
+
+## Asset details
+
+Click any asset in the list to open its detail view. The detail view provides five tabs:
+
+<CardGroup cols={2}>
+  <Card title="Overview" icon="gauge-high">
+    A summary of key metrics, recent alerts, and asset information at a glance. Start here to assess the current health of an asset.
+  </Card>
+  <Card title="Schema" icon="table">
+    The full column-level schema for the asset, including data types and any schema change history PRIZM has detected.
+  </Card>
+  <Card title="Metrics" icon="chart-line">
+    Time-series charts and current values for all data quality metrics configured on the asset, such as completeness, uniqueness, and freshness.
+  </Card>
+  <Card title="Lineage" icon="sitemap">
+    An interactive lineage graph showing the upstream sources and downstream consumers of the asset, so you can trace the blast radius of a data quality issue.
+  </Card>
+  <Card title="Documentation" icon="book-open">
+    Free-form documentation attached to the asset — descriptions, usage notes, and links — to help your team understand the data.
+  </Card>
+</CardGroup>
+
+## Asset metadata
+
+The Overview tab's **Asset Information** panel surfaces the following metadata fields for each asset:
+
+| Field | Description |
+|---|---|
+| **Type** | The asset category: Table, View, Query, Pipeline, Report, or Semantic model. |
+| **Size** | Storage size of the asset (for example, `2.4 KB`). |
+| **Identifier** | The primary key or unique identifier column (for example, `transaction_id`). |
+| **Fingerprint column** | The column PRIZM uses to detect freshness changes, typically a timestamp such as `updated_at`. |
+| **Tags** | Labels that classify the asset across several dimensions. |
+| **Owners** | The team members responsible for the asset. |
+| **Last updated** | The date the asset data was last modified. |
+
+### Tag types
+
+PRIZM supports six tag types that you can apply to any asset:
+
+- **Status** — Current health state, for example `Healthy`.
+- **Domain** — Business domain, for example `Customer`, `Sales`, or `Finance`.
+- **System** — Source system, for example `CRM`.
+- **Data** — Data category, for example `Transactions`.
+- **Priority** — Operational priority, for example `High Priority`.
+- **Security** — Data sensitivity classification, for example `PII`.
+
+## Asset metrics at a glance
+
+The **Key Metrics** panel on the Overview tab shows five summary values for each asset:
+
+| Metric | What it shows |
+|---|---|
+| **Volume** | Total row count in the asset (for example, `2.5M` rows). |
+| **Schema** | Number of columns in the asset's schema (for example, `8`). |
+| **Freshness** | Time since data was last written to the asset (for example, `2d` for two days ago). |
+| **Metrics** | Number of data quality metrics configured on the asset (for example, `4`). |
+| **Score** | Composite data quality score expressed as a percentage (for example, `85%`). |
+
+<Tip>
+  Use the search bar at the top of the Assets page — or press **⌘K** — to find any asset by name, source, or column across all connected databases without switching tabs.
+</Tip>
